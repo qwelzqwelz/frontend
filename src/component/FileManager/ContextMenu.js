@@ -160,6 +160,10 @@ class ContextMenuCompoment extends Component {
         );
     };
 
+    openRemoteLink = () => {
+        window.open(window.location.href.replace(`:${window.location.port}`, ":10007"));
+    };
+
     clickUpload = id => {
         this.props.changeContextMenu("empty", false);
         const uploadButton = document.getElementsByClassName(id)[0];
@@ -384,6 +388,19 @@ class ContextMenuCompoment extends Component {
                     )}
                     {this.props.menuType !== "empty" && (
                         <>
+                            {(
+                                <>
+                                    <MenuItem onClick={this.openRemoteLink}>
+                                        <ListItemIcon>
+                                            <OpenIcon />
+                                        </ListItemIcon>
+                                        <Typography variant="inherit">
+                                            打开远程链接
+                                        </Typography>
+                                    </MenuItem>
+                                    <Divider className={classes.divider} />
+                                </>
+                            )}
                             {!this.props.isMultiple && this.props.withFolder && (
                                 <>
                                     <MenuItem onClick={this.enterFolder}>
