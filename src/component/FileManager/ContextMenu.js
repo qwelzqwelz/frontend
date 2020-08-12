@@ -161,7 +161,12 @@ class ContextMenuCompoment extends Component {
     };
 
     openRemoteLink = () => {
-        window.open(window.location.href.replace(`:${window.location.port}`, ":10007"));
+        const dest_url = window.location.href.replace(`:${window.location.port}`, ":10007");
+        if (! this.props.withFolder) {
+            window.open(dest_url);
+        } else {
+            window.open(`${dest_url}/${this.props.selected[0].name}`);
+        }
     };
 
     clickUpload = id => {
